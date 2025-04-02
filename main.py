@@ -1,5 +1,5 @@
 from graph import Graph, DiGraph
-from create_line_graph import LineGraph
+from GraphOperations.line_graph import LineGraph
 
 
 if __name__ == "__main__":
@@ -20,7 +20,7 @@ if __name__ == "__main__":
     print(graph.edge_list)
     print(graph.node_list)
     print(graph.get_degree(1))
-    print(graph.get_nodes_with_odd_degree())
+    print(graph.get_number_off_nodes_with_odd_degree())
     print(graph.check_if_graph_is_regular())
 
     print("DELETE")

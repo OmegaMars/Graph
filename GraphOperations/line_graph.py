@@ -1,4 +1,8 @@
-from graph import Graph
+import sys
+if "pytest" in sys.modules:
+    from ..graph import Graph
+else:
+    from graph import Graph
 
 class LineGraph:
     def __init__(self, graph):
@@ -6,19 +10,20 @@ class LineGraph:
         self.line_graph = Graph()
         self.edge_list = []
         self.convert_edges_to_line_nodes()
-        self.vertexes = []
+        self.node_list = []
+        self.add_edges_to_line_graph()
         # Wenn 2 edges im original Graph am selben Knoten anliegen, sind sie mit einer edge im Linegraph verbunden.
 
     def convert_edges_to_line_nodes(self):
-        self.edges = self.graph.get_similar_oriented_edges()
-        for vertex in self.edges:
-            self.line_graph.add_vertex(vertex)
+        self.edge_list = self.graph.get_similar_oriented_edges()
+        for index, edge in enumerate(self.edge_list):
+            self.line_graph.add_vertex(index)
 
     def add_edges_to_line_graph(self):
         connections = []
         explored = []
         discovered_nodes = []
-        for edge in self.edges:
+        for edge in self.edge_list:
             edge = (edge[0], edge[1])
             for node in edge:
                 if node not in discovered_nodes:
