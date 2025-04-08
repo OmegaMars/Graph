@@ -23,6 +23,6 @@ def regular_graph(graph_f):
 
 def test_create_line_graph(graph_f):
     line_graph = LineGraph(graph_f)
+    assert line_graph.edge_list == [[1, 2, 0, 0], [1, 4, 0, 0], [2, 3, 0, 0], [2, 4, 0, 0], [4, 5, 0, 0]]
+    print(line_graph.node_list)
     assert line_graph.node_list == [(1, ''), (2, ''), (3, ''), (4, ''), (5, '')]
-    print(line_graph.edge_list)
-    assert line_graph.edge_list == [[1, 2, 0, 0], [2, 3, 0, 0], [2, 4, 0, 0], [4, 5, 0, 0]]

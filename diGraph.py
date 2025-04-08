@@ -6,6 +6,15 @@ class DiGraph:
         self.node_list = [] # [(id, label)]
         self.node_ids = []
 
+    def get_edge_list(self):
+        return self.edge_list
+
+    def get_node_list(self):
+        return self.node_list
+
+    def get_node_ids(self):
+        return self.node_ids
+
     def add_edge(self, edge:Union[tuple, list]):
         """
         Args:
