@@ -81,6 +81,7 @@ class DiGraph:
             edge (tuple): A tuple that represents the edge between node 1 and node 2.
                           Oriented from 1 to 2.
         """
+        edge_type = type(edge)
         if type(edge) != tuple and type(edge) != list:
             raise TypeError("edge should be of type tuple for directed or list for undirected")
         if len(edge) not in [2, 3, 4]:
@@ -93,7 +94,10 @@ class DiGraph:
             for vertex in edge[:1]:
                 if not vertex in self.node_ids:
                     raise ValueError(f"vertex {vertex} does not exist")
-            return edge
+            if edge_type == tuple:
+                return edge
+            else:
+                return list(edge)
 
     def check_vertex(self, vertex:Union[tuple, int]):
         if type(vertex) != int and type(vertex) != tuple:
@@ -127,3 +131,66 @@ class DiGraph:
             if edge not in result and (edge[1], edge[0], edge[2], edge[3]) not in result:
                 result.append(edge)
         return result
+
+    def get_in_degree(self, vertex:tuple) -> int:
+        """
+        Args:
+            vertex (tuple, int): Fertex to get the incoming degree.
+
+        Returns:
+            int: Number of incoming edges.
+        """
+        if type(vertex) == int:
+            vertex = self.check_vertex(vertex)
+        number = 0
+        for edge in self.edge_list:
+            if edge[1] == vertex:
+                number += 1
+        return number
+
+    def get_out_degree(self, vertex:Union[tuple, int]) -> int:
+        """
+        Args:
+            vertex (tuple, int): Fertex to get the outgoing degree.
+
+        Returns:
+            int: Number of outgoing edges.
+        """
+        if type(vertex) == int:
+            vertex = self.check_vertex(vertex)
+        number = 0
+        for edge in self.edge_list:
+            if edge[0] == vertex:
+                number += 1
+        return number
+
+
+    def get_number_of_nodes_where_incoming_not_equals_outgoing_degree(self):
+        """
+        Returns:
+            int: Number of Nodes that have not the same amount of incoming and outgoing edges.
+        """
+        node_count = 0
+        for node in self.node_list:
+            in_degree = self.get_in_degree(node[0])
+            out_degree = self.get_out_degree(node[0])
+            if in_degree != out_degree:
+                node_count += 1
+        return node_count
+
+    def check_if_graph_has_singelton(self):
+        """
+        Cecks if the graph is connected.
+
+        Returns:
+            bool: True if there is a vertex that has no edge aligned.
+        """
+        nodes = self.node_ids
+        for edge in self.edge_list:
+            for node in self.node_ids:
+                if node == edge[0] or node == edge[1]:
+                    nodes.remove(node)
+        if nodes != []:
+            return True
+        else:
+            return False
