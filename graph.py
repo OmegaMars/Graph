@@ -75,3 +75,10 @@ class Graph(DiGraph):
             elif last_degree != degree:
                 return False
         return True
+
+    def calculate_eigenvalue_centrality(self):
+        """
+        Not for DiGraph.
+        TODO
+        """
+        pass

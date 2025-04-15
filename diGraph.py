@@ -15,6 +15,12 @@ class DiGraph:
     def get_node_ids(self):
         return self.node_ids
 
+    def get_edge_ids(self):
+        edge_ids = []
+        for index, edge in enumerate(self.edge_list):
+            edge_ids.append(index)
+            return edge_ids
+
     def add_edge(self, edge:Union[tuple, list]):
         """
         Args:
