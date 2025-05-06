@@ -76,6 +76,16 @@ class Graph(DiGraph):
                 return False
         return True
 
+    def get_sorted_node_lists(self):
+        """
+        Returns:
+            tuple[[list[tuple]], [list]]: Ascending sorted node list and node id list.
+        """
+        sorted_node_list = sorted(self.node_list, key=lambda x: x[0])
+        sorted_node_ids = sorted(self.node_ids, key=lambda x: x[0])
+        return sorted_node_list, sorted_node_ids
+
+
     def calculate_eigenvalue_centrality(self):
         """
         Not for DiGraph.

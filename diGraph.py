@@ -200,3 +200,32 @@ class DiGraph:
             return True
         else:
             return False
+
+    def get_neighboring_nodes(self, node):
+        """
+        Returns:
+            List[List]: List of all nodes connected to the current node.
+        """
+        result = []
+        for edge in self.edge_list:
+            if edge[0] == node[0]:
+                result.append([edge[1], edge[2], edge[3]])
+            if type(edge) == tuple:
+                if edge[1] == node[0]:
+                    result.append([edge[0], edge[2], edge[3]])
+
+    def get_edge_between_two_node_indices(self, node1:int, node2:int):
+        """
+        Returns:
+            Edge or bool if input is wrong or no edge was found.
+        """
+        if type(node1) != int or type(node2) != int:
+            return False
+        result = []
+        for edge in self.edge_list:
+            if edge[1] == node1 and edge[2] == node2:
+                result = edge
+        if edge == []:
+            return False
+        else:
+            return result
