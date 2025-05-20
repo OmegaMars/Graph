@@ -20,3 +20,7 @@ pip freeze > requirements.txt
 
 #
 Adjacency List: dict key: Node, value: Lists
+
+
+SciPy: (Disjoint Set)
+scipy.cluster
