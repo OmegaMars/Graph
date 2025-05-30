@@ -1,10 +1,10 @@
 import pytest
-from ...diGraph import DiGraph
+from ...graph import Graph
 from ...Algorithms.FloydWarshall import FloydWarshall
 
 @pytest.fixture
 def graph():
-    graph = DiGraph()
+    graph = Graph()
     vertexes = [1, 2, 3, 4, 5]
     edges = [(1, 2, 3), (2, 1, 1.3), (5, 1, 2), (2, 3, -1), (2, 4, 7), (5, 2, -1), (3, 4, -1), (4, 5, 1.2)]
     for vertex in vertexes:

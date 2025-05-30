@@ -92,3 +92,13 @@ class Graph(DiGraph):
         TODO
         """
         pass
+
+    def get_edge_between_two_node_indices(self, node1:int, node2:int):
+        """
+        Returns:
+            list: The edge between two nodes.
+        """
+        for edge in self.edge_list:
+            if (edge[0] == node1 and edge[1] == node2) or (edge[0] == node2 and edge[1] == node1):
+                return edge
+        return None

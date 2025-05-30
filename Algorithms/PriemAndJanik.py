@@ -36,5 +36,6 @@ class PriemAndJanik:
             next_node = last_edge[1] if last_edge[0] == node else last_edge[0]
             explored.append(node)
             edge_list.append(self.graph.get_edge_between_two_node_indices(node, next_node))
+            # print(f'{edge_list}, , {node}, , {next_node}, , {self.graph.get_edge_between_two_node_indices(node, next_node)}')
             not_explored.remove(node)
         return self.solution_matrix, edge_list
