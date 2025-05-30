@@ -45,6 +45,18 @@ class DiGraph:
             self.node_list.append(vertex)
             self.node_ids.append(vertex[0])
 
+    def add_vertex_list(self, vertex_list:list):
+        """
+        """
+        for vertex in vertex_list:
+            self.add_vertex(vertex)
+
+    def add_edge_list(self, edge_list:list):
+        """
+        """
+        for edge in edge_list:
+            self.add_edge(edge)
+
     def delete_edge(self, edge:Union[tuple, list]):
         """
         Deletes an edge of the graph.
