@@ -1,6 +1,6 @@
 from graph import Graph, DiGraph
 from GraphOperations.line_graph import LineGraph
-
+from Visualization.plot_graph import GraphPlotter
 
 if __name__ == "__main__":
     graph = Graph()
@@ -29,3 +29,6 @@ if __name__ == "__main__":
 
     print(graph.edge_list)
     print(graph.node_list)
+
+    plotter = GraphPlotter()
+    plotter.plot_graph(graph)
