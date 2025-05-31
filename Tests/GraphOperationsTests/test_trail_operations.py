@@ -1,4 +1,5 @@
 import pytest
+import sys
 from ...graph import Graph
 from ...GraphOperations.trail_operations import TrailOperations
 

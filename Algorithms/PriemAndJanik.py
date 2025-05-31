@@ -1,4 +1,8 @@
-from ..graph import Graph
+import sys
+if "pytest" in sys.modules:
+    from ..graph import Graph
+else:
+    from graph import Graph
 
 class PriemAndJanik:
     def __init__(self, graph:Graph):

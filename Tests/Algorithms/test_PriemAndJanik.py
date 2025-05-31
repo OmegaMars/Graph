@@ -1,6 +1,7 @@
 import pytest
 from ...graph import Graph
 from ...Algorithms.PriemAndJanik import PriemAndJanik
+from ...Visualization.plot_graph import GraphPlotter
 
 @pytest.fixture
 def graph():
@@ -31,3 +32,5 @@ def test_calculate(graph):
     print(f'Result: {edge_result}')
     assert result == node_target
     assert edge_result == edge_target
+    plotter = GraphPlotter()
+    plotter.plot_graph(graph, edge_result, edge_color='red', show_weights=True)
