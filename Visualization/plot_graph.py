@@ -1,7 +1,4 @@
-# import networkx
 import graphviz as gv
-# Networkx aus eigenem Objekt erzeugen.
-# Gaphthis das exportierte von graphx darstellen.
 from typing import Union
 from graph import Graph
 from diGraph import DiGraph
