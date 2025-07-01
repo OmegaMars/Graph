@@ -8,7 +8,7 @@ pip freeze > requirements.txt
 - Hierholzer
 - Dijkstra Testen
 - Eigenwert Zentralität in graph (Nicht DiGraph)
-- Graphische Darstellung
+- Graphische Darstellung. Layer von Algorithmen
 - Fix Floyd and Warshall
     - Closeness Centrality
     - Betweeness Centrality
