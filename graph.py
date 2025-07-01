@@ -102,3 +102,19 @@ class Graph(DiGraph):
             if (edge[0] == node1 and edge[1] == node2) or (edge[0] == node2 and edge[1] == node1):
                 return edge
         return None
+
+
+    def get_adjacent_edges(self, node):
+        """
+        Get all edges adjacent to a given node.
+        Args:
+            node: The node for which to find adjacent edges.
+            edge_list: A list of edges, where each edge is a tuple (node1, node2, weight).
+        Returns:
+            A list of edges adjacent to the given node.
+        """
+        adjacent_edges = []
+        for edge in self.edge_list:
+            if edge[0] == node or edge[1] == node:
+                adjacent_edges.append(edge)
+        return adjacent_edges

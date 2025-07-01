@@ -1,4 +1,5 @@
 import pytest
+import sys
 from ..diGraph import DiGraph
 
 

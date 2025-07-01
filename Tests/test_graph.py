@@ -1,4 +1,5 @@
 import pytest
+import sys
 from ..graph import Graph
 
 @pytest.fixture

@@ -1,4 +1,8 @@
-from ..graph import Graph
+import sys
+if "pytest" in sys.modules:
+    from ..graph import Graph
+else:
+    from graph import Graph
 
 class PriemAndJanik:
     def __init__(self, graph:Graph):
@@ -8,34 +12,51 @@ class PriemAndJanik:
             if node[0] < self.start_node:
                 self.start_node = node
         self.nodes = self.graph.node_ids
-        # _, self.nodes = self.graph.get_sorted_node_lists() <------------ TODO
-        # self.solution_matrix = [[float('inf')] * len(self.nodes) for _ in range(len(self.nodes))]
-        self.solution_matrix = [float('inf') for _ in range(len(self.nodes))]
+        self.solution_matrix = [[float('inf'), ()] for _ in range(len(self.nodes))]
 
     def calculate(self):
-        not_explored = self.nodes
+        """
+        Calculate the minimum spanning tree using Prim's algorithm.
+        Returns:
+            tuple: A tuple containing the list of weights for each node and the list of edges in the minimum spanning tree.
+        """
+        not_explored = len(self.nodes) - 1
         explored = []
         next_node = self.start_node
-        self.solution_matrix[next_node - 1] = 0
+        self.solution_matrix[self.start_node - 1][0] = 0
         edge_list = []
-        while len(not_explored) > 0:
+        while not_explored > 0:
             node = next_node
-            weight_list = []
-            for edge in self.graph.edge_list:
-                node2 = edge[0] if edge[1] == node else edge[1]
-                if (edge[0] == node or edge[1] == node) and node2 not in explored:
-                    weight_list.append(edge)
-                    if edge[2] < self.solution_matrix[node2 - 1]:
-                        self.solution_matrix[node2 - 1] = edge[2]
-            if len(weight_list) <= 0:
-                break
-            last_edge = weight_list[0]
-            for edge in weight_list:
-                if edge[2] < last_edge[2]:
-                    last_edge = edge
-            next_node = last_edge[1] if last_edge[0] == node else last_edge[0]
             explored.append(node)
-            edge_list.append(self.graph.get_edge_between_two_node_indices(node, next_node))
-            # print(f'{edge_list}, , {node}, , {next_node}, , {self.graph.get_edge_between_two_node_indices(node, next_node)}')
-            not_explored.remove(node)
-        return self.solution_matrix, edge_list
+            adjancent_edges = self.graph.get_adjacent_edges(node)
+            print(explored)
+            print(edge_list)
+            for edge in adjancent_edges:
+                target_node = edge[0] if edge[1] == node else edge[1]
+                if (edge[0] == node or edge[1] == node) and target_node not in explored:
+                    if edge[2] < self.solution_matrix[target_node - 1][0]:
+                        self.solution_matrix[target_node - 1][0] = edge[2]
+                        self.solution_matrix[target_node - 1][1] = edge
+            lowest_weight = float('inf')
+            lowest_weight_edge = None
+            for index, weight in enumerate(self.solution_matrix):
+                index += 1
+                if index in explored: continue
+                elif weight[0] < lowest_weight:
+                    lowest_weight = weight[0]
+                    lowest_weight_edge = weight[1]
+            next_node = lowest_weight_edge[1] if lowest_weight_edge[0] in explored else lowest_weight_edge[0]
+            edge_list.append(lowest_weight_edge)
+            not_explored -= 1
+        return self.convert_solution_matrix_to_weight_list(), edge_list
+
+    def convert_solution_matrix_to_weight_list(self):
+        """
+        Convert the solution matrix to a list of weights.
+        Returns:
+            list: A list of weights corresponding to the nodes in the solution matrix.
+        """
+        weight_list = []
+        for node in self.solution_matrix:
+            weight_list.append(node[0])
+        return weight_list
