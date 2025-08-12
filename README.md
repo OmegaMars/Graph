@@ -1,6 +1,6 @@
 # Graph
 
-A Wwork in progress collection of algorithms for computations on graphs.
+A work in progress collection of algorithms for computations on graphs.
 
 
 
