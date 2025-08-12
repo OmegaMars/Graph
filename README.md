@@ -1,6 +1,6 @@
 # Graph
 
-pip freeze > requirements.txt
+A Wwork in progress collection of algorithms for computations on graphs.
 
 
 
@@ -15,12 +15,3 @@ pip freeze > requirements.txt
     - Return negativ Cycle
 - Diameter and Center of direkted Graph
 - BFS (Breitensuche)
-
-
-
-#
-Adjacency List: dict key: Node, value: Lists
-
-
-SciPy: (Disjoint Set)
-scipy.cluster
